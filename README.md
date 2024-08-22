@@ -17,6 +17,6 @@ I’m a Frontend Developer with a passion for creating dynamic and user-friendly
 ![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github)
 
 
-![Github Stats](https://github-readme-stats.vercel.app/api?username=mello-x&count_private=true&show_icons=true&include_all_commits=true)
+![Github Stats](https://github-readme-stats.vercel.app/api?username=mello-x&count_private=true&show_icons=true&include_all_commits=true&theme=radical)
 
 ![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=mello-x.mello-x)
