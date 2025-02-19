@@ -9,6 +9,7 @@ I’m a Frontend Developer with a passion for creating dynamic and user-friendly
 ![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript)
 ![jQuery](https://img.shields.io/badge/-jQuery-AEB2D5?style=flat-square&logo=jquery)
 ![PHP](https://img.shields.io/badge/-PHP-AEB2D5?style=flat-square&logo=PHP)
+![ASTRO](https://img.shields.io/badge/-ASTRO-AEB2D5?style=flat-square&logo=ASTRO)
 ![Bootstrap](https://img.shields.io/badge/-Bootstrap-563D7C?style=flat-square&logo=bootstrap)
 ![WordPress](https://img.shields.io/badge/-WordPress-21759b?style=flat-square&logo=wordpress)
 ![MySQL](https://img.shields.io/badge/-MySQL-black?style=flat-square&logo=mysql)
