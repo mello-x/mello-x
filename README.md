@@ -1,6 +1,6 @@
 ## Hi there 🛸
 
-I’m a Frontend Developer with a passion for creating dynamic and user-friendly web experiences. I specialize in PHP, JavaScript, jQuery, and WordPress, and I have extensive experience in building and customizing WordPress themes and plugins.
+I’m a Frontend Developer with a passion for creating dynamic and user-friendly web experiences. I specialize in PHP, JavaScript, jQuery, WordPress, Astro and I have extensive experience in building and customizing WordPress themes and plugins.
 
 ## Technologies ⚡
 
