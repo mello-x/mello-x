@@ -21,11 +21,17 @@ NAME = "Assawin Chittanandha"
 ABOUT = "Frontend software engineer in Bangkok, building fast sites and CMS tooling with Astro, React and PHP."
 PORTRAIT = next((p for p in ROOT.glob("portrait.*") if p.suffix.lower() in (".jpg", ".jpeg", ".png")), None)
 FEATURED = ["strapi-export-import-excel"]  # repo cards, in this order
-TILES = [  # (kicker, title, subtitle); the links live in README.md
-    ("01", "Projects", "All my repositories"),
-    ("02", "LinkedIn", "Experience & background"),
-    ("03", "Email", "chittanandhaassawin@gmail.com"),
+LINKS = [  # (icon, label) drawn bottom-left of the hero; decoration only, the hero img links to LinkedIn
+    ("folder", "github.com/mello-x"),
+    ("linkedin", "LinkedIn"),
+    ("mail", "chittanandhaassawin@gmail.com"),
 ]
+ICONS = {  # 20x20, stroked in the accent colour
+    "folder": '<path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v8a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 15.5z"/>',
+    "linkedin": '<rect x="2" y="2" width="16" height="16" rx="3"/><path d="M6.5 9v5M10 14V9M10 11.5Q10 9 12.5 9T15 11.5V14"/>'
+                '<circle cx="6.5" cy="6.3" r=".6" fill="currentColor"/>',
+    "mail": '<rect x="2" y="4.5" width="16" height="11" rx="2"/><path d="M2.8 5.6 10 11.2l7.2-5.6"/>',
+}
 
 # ---- Brand: pink + white on the CardPortfolio dark cards -------------------
 ACCENT, ACCENT_2 = "#ff007f", "#ff7fbf"  # brand pink, fading halfway to white
@@ -123,14 +129,14 @@ assert streaks([0, 0]) == (0, 0)
 
 
 # ---- cards -----------------------------------------------------------------
-TILE_W, TILE_H = 272, 120
 
 
 def hero():
     has_photo = PORTRAIT is not None
     text_w = 560 if has_photo else W - 80
     about = wrap(ABOUT, 16, text_w)
-    h = 168 + 26 * len(about) + 22
+    row = 168 + 26 * len(about) + 26  # baseline of the icon row
+    h = row + 34
     name_w = width(NAME, 40, 600)
     body = text(40, 62, "HELLO, I'M", 12, 600, f"url(#gold)", "a", .1, 'letter-spacing="3"')
     body += text(40, 112, NAME, 40, 600, WHITE, "a", .2)
@@ -145,6 +151,13 @@ def hero():
     body += f'<path class="still" d="{line}" stroke="url(#ul)" stroke-width="3" stroke-linecap="round"/>'
     for i, l in enumerate(about):
         body += text(40, 168 + 26 * i, l, 16, 400, GRAY, "a", .45 + .08 * i)
+    x = 40
+    for i, (icon, label) in enumerate(LINKS):
+        g = (f'<g transform="translate({x} {row - 15})" color="{ACCENT}" stroke="{ACCENT}" stroke-width="1.6" '
+             f'fill="none" stroke-linecap="round" stroke-linejoin="round">{ICONS[icon]}</g>')
+        g += text(x + 28, row, label, 13, 400, GRAY)
+        body += f'<g class="a" style="animation-delay:{.65 + .1 * i:.2f}s">{g}</g>'
+        x += 28 + width(label, 13) + 28
     if has_photo:
         mime = "png" if PORTRAIT.suffix.lower() == ".png" else "jpeg"
         img = base64.b64encode(PORTRAIT.read_bytes()).decode()
@@ -154,16 +167,6 @@ def hero():
                  f'clip-path="url(#pc)" preserveAspectRatio="xMidYMid slice"/>'
                  f'<circle cx="{cx}" cy="{cy}" r="{r + 4}" fill="none" stroke="url(#gold)" stroke-width="2"/></g>')
     card("hero", h, body, 0)
-
-
-def tiles():
-    for i, (kicker, title, sub) in enumerate(TILES):
-        d = .35 + .15 * i
-        body = text(24, 40, kicker, 12, 600, "url(#gold)", "", None, 'letter-spacing="2"')
-        body += f'<path d="M232 30l12-12M235 18h9v9" stroke="{ACCENT}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
-        body += text(24, 76, title, 20, 600, WHITE)
-        body += text(24, 98, wrap(sub, 13, TILE_W - 48, 1)[0], 13)
-        card(f"tile-{i + 1}", TILE_H, body, d, TILE_W)
 
 
 def activity(days, delay):
@@ -295,7 +298,6 @@ def main():
     repos = [by_name[n] for n in FEATURED]
     CARDS.mkdir(exist_ok=True)
     hero()
-    tiles()
     graph(cal["weeks"], cal["totalContributions"], .9)
     activity(days, 1.6)
     repo_cards(repos, 2.3)
