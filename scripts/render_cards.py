@@ -20,6 +20,7 @@ STATIC = os.environ.get("STATIC") == "1"
 NAME = "Assawin Chittanandha"
 ABOUT = "Frontend software engineer in Bangkok, building fast sites and CMS tooling with Astro, React and PHP."
 PORTRAIT = next((p for p in ROOT.glob("portrait.*") if p.suffix.lower() in (".jpg", ".jpeg", ".png")), None)
+FEATURED = ["strapi-export-import-excel"]  # repo cards, in this order
 TILES = [  # (kicker, title, subtitle); the links live in README.md
     ("01", "Projects", "All my repositories"),
     ("02", "LinkedIn", "Experience & background"),
@@ -288,13 +289,16 @@ def main():
     user = json.loads((ROOT / "data/contributions.json").read_text())["data"]["user"]
     cal = user["contributionsCollection"]["contributionCalendar"]
     days = [(d["date"], d["contributionCount"]) for w in cal["weeks"] for d in w["contributionDays"]]
-    repos = [r for r in user["pinnedItems"]["nodes"] if r]
+    by_name = {r["name"]: r for r in user["repositories"]["nodes"]}
+    missing = [n for n in FEATURED if n not in by_name]
+    assert not missing, f"FEATURED repos not found: {missing}"
+    repos = [by_name[n] for n in FEATURED]
     CARDS.mkdir(exist_ok=True)
     hero()
     tiles()
-    activity(days, .9)
-    repo_cards(repos, 1.5)
-    graph(cal["weeks"], cal["totalContributions"], 1.5 + .2 * len(repos) + .1)
+    graph(cal["weeks"], cal["totalContributions"], .9)
+    activity(days, 1.6)
+    repo_cards(repos, 2.3)
     readme_repos(repos)
     print(f"rendered {len(list(CARDS.glob('*.svg')))} cards{' (static)' if STATIC else ''}")
 

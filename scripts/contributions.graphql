@@ -6,7 +6,7 @@ query($login: String!) {
         weeks { contributionDays { date contributionCount contributionLevel } }
       }
     }
-    pinnedItems(first: 6, types: REPOSITORY) {
+    repositories(first: 100, ownerAffiliations: OWNER) {
       nodes { ... on Repository { name description url stargazerCount forkCount primaryLanguage { name color } } }
     }
   }
