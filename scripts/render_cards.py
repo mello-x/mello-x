@@ -21,9 +21,9 @@ NAME = "Assawin Chittanandha"
 ABOUT = "Frontend software engineer in Bangkok, building fast sites and CMS tooling with Astro, React and PHP."
 PORTRAIT = next((p for p in ROOT.glob("portrait.*") if p.suffix.lower() in (".jpg", ".jpeg", ".png")), None)
 TILES = [  # (kicker, title, subtitle); the links live in README.md
-    ("01", "Portfolio", "Selected work & case studies"),
+    ("01", "Projects", "All my repositories"),
     ("02", "LinkedIn", "Experience & background"),
-    ("03", "Email", "Say hello, I reply fast"),
+    ("03", "Email", "chittanandhaassawin@gmail.com"),
 ]
 
 # ---- Brand, taken from the CardPortfolio theme -----------------------------
