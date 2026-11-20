@@ -12,7 +12,7 @@ jobs:
   cards:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Fetch contribution data
         env:
@@ -20,7 +20,7 @@ jobs:
           GH_TOKEN: ${{ secrets.CONTRIB_TOKEN || github.token }}
         run: gh api graphql -F login="${{ github.repository_owner }}" -f query="$(cat scripts/contributions.graphql)" > data/contributions.json
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
