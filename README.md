@@ -1,21 +1,15 @@
-## Hi there 🛸
+<a href="https://github.com/mello-x"><img src="cards/hero.svg" width="100%" alt="Assawin Chittanandha, frontend software engineer in Bangkok"></a>
 
-I’m a Frontend Developer with a passion for creating dynamic and user-friendly web experiences. I specialize in PHP, JavaScript, jQuery, WordPress, Astro and I have extensive experience in building and customizing WordPress themes and plugins.
+<a href="https://YOUR-PORTFOLIO-URL"><img src="cards/tile-1.svg" width="32.5%" alt="Portfolio"></a>
+<a href="https://www.linkedin.com/in/YOUR-HANDLE"><img src="cards/tile-2.svg" width="32.5%" alt="LinkedIn"></a>
+<a href="mailto:YOUR-EMAIL"><img src="cards/tile-3.svg" width="32.5%" alt="Email"></a>
 
-## Technologies ⚡
+<img src="cards/activity.svg" width="100%" alt="Contributions per month, streak, active days and busiest day">
 
-![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3)
-![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript)
-![jQuery](https://img.shields.io/badge/-jQuery-AEB2D5?style=flat-square&logo=jquery)
-![PHP](https://img.shields.io/badge/-PHP-AEB2D5?style=flat-square&logo=PHP)
-![ASTRO](https://img.shields.io/badge/-ASTRO-AEB2D5?style=flat-square&logo=ASTRO)
-![Bootstrap](https://img.shields.io/badge/-Bootstrap-563D7C?style=flat-square&logo=bootstrap)
-![WordPress](https://img.shields.io/badge/-WordPress-21759b?style=flat-square&logo=wordpress)
-![MySQL](https://img.shields.io/badge/-MySQL-black?style=flat-square&logo=mysql)
-![Docker](https://img.shields.io/badge/-Docker-black?style=flat-square&logo=docker)
-![Git](https://img.shields.io/badge/-Git-black?style=flat-square&logo=git)
-![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github)
+<!-- repos:start -->
+<a href="https://github.com/mello-x/Quote-Generator"><img src="cards/repo-1.svg" width="100%" alt="Quote-Generator"></a>
 
+<a href="https://github.com/mello-x/strapi-export-import-excel"><img src="cards/repo-2.svg" width="100%" alt="strapi-export-import-excel"></a>
+<!-- repos:end -->
 
-![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=mello-x.mello-x)
+<img src="cards/graph.svg" width="100%" alt="Contribution graph for the last year">
