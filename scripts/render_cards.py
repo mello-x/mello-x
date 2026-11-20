@@ -27,9 +27,9 @@ TILES = [  # (kicker, title, subtitle); the links live in README.md
     ("03", "Email", "chittanandhaassawin@gmail.com"),
 ]
 
-# ---- Brand, taken from the CardPortfolio theme -----------------------------
-GOLD, GOLD_2 = "#ffdb70", "#ffbb5c"  # --orange-yellow-crayola -> --text-gradient-yellow end
-WHITE, GRAY, MUTED = "#fafafa", "#d6d6d6", "rgba(214,214,214,.7)"  # --white-2, --light-gray(-70)
+# ---- Brand: pink + white on the CardPortfolio dark cards -------------------
+ACCENT, ACCENT_2 = "#ff007f", "#ff7fbf"  # brand pink, fading halfway to white
+WHITE, GRAY, MUTED = "#ffffff", "#d6d6d6", "rgba(214,214,214,.7)"
 JET, ONYX = "#383838", "#2b2b2c"  # border, empty cell
 W = 840
 
@@ -51,8 +51,8 @@ CSS += STILL if STATIC else "@media (prefers-reduced-motion:reduce){%s}" % STILL
 
 DEFS = f"""<defs>
 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2d2d2f"/><stop offset="1" stop-color="#1e1e20"/></linearGradient>
-<linearGradient id="gold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{GOLD}"/><stop offset="1" stop-color="{GOLD_2}"/></linearGradient>
-<linearGradient id="goldv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{GOLD}"/><stop offset="1" stop-color="{GOLD_2}"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{ACCENT}"/><stop offset="1" stop-color="{ACCENT_2}"/></linearGradient>
+<linearGradient id="goldv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{ACCENT}"/><stop offset="1" stop-color="{ACCENT_2}"/></linearGradient>
 </defs>"""
 
 
@@ -137,7 +137,7 @@ def hero():
     line = f'M40 130H{40 + name_w:.0f}'
     # user-space gradient: a bbox gradient on a zero-height line renders nothing
     body += (f'<linearGradient id="ul" gradientUnits="userSpaceOnUse" x1="40" x2="{40 + name_w:.0f}" y1="0" y2="0">'
-             f'<stop offset="0" stop-color="{GOLD}"/><stop offset="1" stop-color="{GOLD_2}"/></linearGradient>')
+             f'<stop offset="0" stop-color="{ACCENT}"/><stop offset="1" stop-color="{ACCENT_2}"/></linearGradient>')
     body += (f'<path class="smil" d="{line}" stroke="url(#ul)" stroke-width="3" stroke-linecap="round" fill="none" '
              f'pathLength="1" stroke-dasharray="1" stroke-dashoffset="1">'
              f'<animate attributeName="stroke-dashoffset" from="1" to="0" begin=".6s" dur="1s" fill="freeze" '
@@ -160,7 +160,7 @@ def tiles():
     for i, (kicker, title, sub) in enumerate(TILES):
         d = .35 + .15 * i
         body = text(24, 40, kicker, 12, 600, "url(#gold)", "", None, 'letter-spacing="2"')
-        body += f'<path d="M232 30l12-12M235 18h9v9" stroke="{GOLD}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+        body += f'<path d="M232 30l12-12M235 18h9v9" stroke="{ACCENT}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
         body += text(24, 76, title, 20, 600, WHITE)
         body += text(24, 98, wrap(sub, 13, TILE_W - 48, 1)[0], 13)
         card(f"tile-{i + 1}", TILE_H, body, d, TILE_W)
@@ -207,8 +207,8 @@ def activity(days, delay):
             g += text(620 + width(value, 22, 600), y + 28, note, 12)
         if i == 0:  # live dot next to the streak
             cx = 622 + width(label, 11, 600) + 1.5 * len(label)
-            g += f'<circle cx="{cx:.1f}" cy="{y - 4}" r="3.5" fill="{GOLD}"/>'
-            g += (f'<circle class="smil" cx="{cx:.1f}" cy="{y - 4}" r="3.5" fill="none" stroke="{GOLD}">'
+            g += f'<circle cx="{cx:.1f}" cy="{y - 4}" r="3.5" fill="{ACCENT}"/>'
+            g += (f'<circle class="smil" cx="{cx:.1f}" cy="{y - 4}" r="3.5" fill="none" stroke="{ACCENT}">'
                   f'<animate attributeName="r" values="3.5;10" dur="1.8s" repeatCount="indefinite"/>'
                   f'<animate attributeName="opacity" values=".8;0" dur="1.8s" repeatCount="indefinite"/></circle>')
         body += f'<g class="a" style="animation-delay:{d:.2f}s">{g}</g>'
@@ -221,7 +221,7 @@ def repo_cards(repos, delay):
     for i, r in enumerate(repos):
         desc = wrap(r["description"] or "No description yet.", 14, W - 64, 2)
         body = text(32, 50, r["name"], 20, 600, "url(#gold)")
-        body += f'<path d="M790 32l12-12M793 20h9v9" stroke="{GOLD}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+        body += f'<path d="M790 32l12-12M793 20h9v9" stroke="{ACCENT}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
         for j, l in enumerate(desc):
             body += text(32, 80 + 22 * j, l, 14, 400, GRAY)
         y = 80 + 22 * len(desc) + 20
@@ -260,14 +260,14 @@ def graph(weeks, total, delay):
         for day in wk["contributionDays"]:
             row = (date.fromisoformat(day["date"]).weekday() + 1) % 7  # Sunday first, like GitHub
             o = LEVELS[day["contributionLevel"]]
-            fill = f'fill="{GOLD}" fill-opacity="{o}"' if o else f'fill="{ONYX}"'
+            fill = f'fill="{ACCENT}" fill-opacity="{o}"' if o else f'fill="{ONYX}"'
             body += (f'<rect class="f" style="animation-delay:{delay + .3 + col * .012:.2f}s" x="{x0 + col * step:.1f}" '
                      f'y="{y0 + row * step}" width="{size}" height="{size}" rx="3" {fill}/>')
     ly = y0 + 7 * step + 16
     lx = W - 32 - width("More", 11) - 6 - 5 * step
     body += text(lx - 6, ly + 10, "Less", 11, 400, MUTED, "", None, 'text-anchor="end"')
     for k, o in enumerate(LEVELS.values()):
-        fill = f'fill="{GOLD}" fill-opacity="{o}"' if o else f'fill="{ONYX}"'
+        fill = f'fill="{ACCENT}" fill-opacity="{o}"' if o else f'fill="{ONYX}"'
         body += f'<rect x="{lx + k * step:.1f}" y="{ly}" width="{size}" height="{size}" rx="3" {fill}/>'
     body += text(lx + 5 * step + 3, ly + 10, "More", 11)
     card("graph", ly + 36, body, delay)
